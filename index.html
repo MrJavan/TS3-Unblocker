@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>رفع مشکل بلک‌لیست تیم‌اسپیک</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Vazirmatn', sans-serif;
+  }
+
+  body {
+    background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0f1428 100%);
+    color: #e0e0e0;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+      radial-gradient(circle at 20% 30%, rgba(0, 123, 255, 0.08) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(0, 200, 150, 0.06) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero {
+    text-align: center;
+    padding: 60px 20px 40px;
+  }
+
+  .badge {
+    display: inline-block;
+    background: rgba(255, 59, 48, 0.15);
+    border: 1px solid rgba(255, 59, 48, 0.3);
+    color: #ff6b6b;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    margin-bottom: 20px;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+  }
+
+  h1 {
+    font-size: 42px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 15px;
+    line-height: 1.4;
+  }
+
+  .subtitle {
+    font-size: 18px;
+    color: #a0a8c0;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.8;
+  }
+
+  .card {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 30px;
+    margin: 25px 0;
+    transition: all 0.3s ease;
+  }
+
+  .card:hover {
+    border-color: rgba(0, 200, 150, 0.3);
+    transform: translateY(-2px);
+  }
+
+  .card-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 22px;
+    font-weight: 700;
+    color: #00f2fe;
+    margin-bottom: 20px;
+  }
+
+  .card-icon {
+    width: 36px;
+    height: 36px;
+    background: linear-gradient(135deg, #4facfe, #00f2fe);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+
+  .card-text {
+    font-size: 16px;
+    line-height: 2;
+    color: #c8d0e0;
+  }
+
+  .highlight {
+    color: #ffb84d;
+    font-weight: 600;
+  }
+
+  .steps {
+    counter-reset: step;
+  }
+
+  .step {
+    counter-increment: step;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    transition: all 0.3s ease;
+  }
+
+  .step:hover {
+    background: rgba(0, 200, 150, 0.05);
+    border-color: rgba(0, 200, 150, 0.2);
+  }
+
+  .step-number {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #00c896, #00a8e8);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    color: #fff;
+    font-size: 18px;
+  }
+
+  .step-number::before {
+    content: counter(step, persian);
+  }
+
+  .step-content {
+    flex: 1;
+  }
+
+  .step-title {
+    font-size: 17px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 6px;
+  }
+
+  .step-desc {
+    font-size: 14px;
+    color: #a0a8c0;
+    line-height: 1.7;
+  }
+
+  .download-section {
+    text-align: center;
+    padding: 40px 20px;
+    margin: 40px 0;
+    background: linear-gradient(135deg, rgba(0, 200, 150, 0.08), rgba(79, 172, 254, 0.08));
+    border: 1px solid rgba(0, 200, 150, 0.2);
+    border-radius: 20px;
+  }
+
+  .download-title {
+    font-size: 26px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 10px;
+  }
+
+  .download-desc {
+    color: #a0a8c0;
+    margin-bottom: 25px;
+    font-size: 15px;
+  }
+
+  .download-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(135deg, #00c896 0%, #00a8e8 100%);
+    color: #fff;
+    text-decoration: none;
+    padding: 16px 40px;
+    border-radius: 12px;
+    font-size: 18px;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 24px rgba(0, 200, 150, 0.3);
+    border: none;
+    cursor: pointer;
+  }
+
+  .download-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba(0, 200, 150, 0.5);
+  }
+
+  .download-btn svg {
+    width: 22px;
+    height: 22px;
+    fill: #fff;
+  }
+
+  .file-info {
+    margin-top: 15px;
+    font-size: 13px;
+    color: #7a8299;
+  }
+
+  .warning-box {
+    background: rgba(255, 184, 77, 0.08);
+    border-right: 4px solid #ffb84d;
+    border-radius: 10px;
+    padding: 18px 22px;
+    margin: 20px 0;
+    font-size: 15px;
+    line-height: 1.9;
+    color: #ffd9a0;
+  }
+
+  .warning-box strong {
+    color: #ffb84d;
+  }
+
+  footer {
+    text-align: center;
+    padding: 30px 20px;
+    color: #6b7290;
+    font-size: 14px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    margin-top: 50px;
+  }
+
+  footer .brand {
+    color: #00f2fe;
+    font-weight: 600;
+  }
+
+  @media (max-width: 600px) {
+    h1 { font-size: 28px; }
+    .subtitle { font-size: 15px; }
+    .container { padding: 20px 15px; }
+    .card { padding: 20px; }
+    .download-btn { padding: 14px 28px; font-size: 16px; }
+    .hero { padding: 30px 10px 20px; }
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    
+    <section class="hero">
+      <span class="badge">● حل مشکل بلک‌لیست تیم‌اسپیک</span>
+      <h1>رفع ارور Blacklist<br>تیم‌اسپیک در چند ثانیه</h1>
+      <p class="subtitle">
+        اگر هنگام اتصال به سرور تیم‌اسپیک با ارور بلک‌لیست مواجه می‌شوید، 
+        اینجا دقیقاً جایی است که مشکل شما حل می‌شود.
+      </p>
+    </section>
+
+    <div class="card">
+      <div class="card-title">
+        <div class="card-icon">⚠️</div>
+        <span>چرا بلک‌لیست می‌شویم؟</span>
+      </div>
+      <p class="card-text">
+        از اواخر فروردین سال ۱۴۰۴، سخت‌گیری‌های تیم توسعه‌ی <span class="highlight">TeamSpeak</span> نسبت به آی‌پی کشورهای تحت تحریم، به‌ویژه ایران، و همچنین لایسنس‌های غیررسمی مانند <span class="highlight">TeaSpeak Server</span> به‌شدت افزایش یافته است.
+        <br><br>
+        در راستای این سیاست، TeamSpeak برای جلوگیری از راه‌اندازی سرور توسط کاربران این کشورها یا استفاده از نسخه‌های مشابه، <span class="highlight">مکانیزم بلک‌لیست سرورها را شدیدتر و هوشمندتر کرده است</span>.
+        <br><br>
+        به همین دلیل، <span class="highlight">آی‌پی‌ها و دامنه‌های مرتبط با سرورهای ایرانی به‌طور مداوم شناسایی و در دیتابیس بلک‌لیست TeamSpeak ثبت می‌شوند</span>. این روند باعث می‌شود بسیاری از کاربران ایرانی هنگام اتصال یا مدیریت سرور با ارور Blacklist مواجه شوند.
+      </p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">
+        <div class="card-icon">🛠️</div>
+        <span>آموزش حل مشکل بلک‌لیست</span>
+      </div>
+      
+      <p class="card-text" style="margin-bottom: 25px;">
+        برای رفع این مشکل کافیست مراحل زیر را به ترتیب انجام دهید:
+      </p>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-number"></div>
+          <div class="step-content">
+            <div class="step-title">دانلود برنامه TS3-Unblocker</div>
+            <div class="step-desc">از طریق دکمه‌ی دانلود در پایین صفحه، آخرین نسخه برنامه را دانلود کنید.</div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-number"></div>
+          <div class="step-content">
+            <div class="step-title">اجرا با دسترسی Administrator</div>
+            <div class="step-desc">روی فایل اجرایی راست‌کلیک کرده و گزینه‌ی <strong style="color:#fff">Run as administrator</strong> را انتخاب کنید.</div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-number"></div>
+          <div class="step-content">
+            <div class="step-title">کلیک روی دکمه Unblock</div>
+            <div class="step-desc">پس از اجرای برنامه، روی دکمه‌ی <strong style="color:#00f2fe">Unblock</strong> کلیک کنید تا فرآیند رفع بلک‌لیست آغاز شود.</div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-number"></div>
+          <div class="step-content">
+            <div class="step-title">اتصال مجدد به سرور</div>
+            <div class="step-desc">تیم‌اسپیک خود را باز کرده و مجدداً به سرور مورد نظر متصل شوید.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="warning-box">
+        ⚠️ <strong>توجه:</strong> قبل از اجرای برنامه، حتماً آنتی‌ویروس خود را موقتاً غیرفعال کنید، زیرا ممکن است فایل اجرایی توسط برخی آنتی‌ویروس‌ها به‌اشتباه به‌عنوان فایل مشکوک شناسایی شود.
+      </div>
+    </div>
+
+    <div class="download-section">
+      <div class="download-title">📥 دانلود برنامه TS3-Unblocker</div>
+      <p class="download-desc">آخرین نسخه - بدون نیاز به نصب</p>
+      <a href="#" class="download-btn">
+        <svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5v2zM19 9h-4V3H9v6H5l7 7 7-7z"/></svg>
+        دانلود برنامه
+      </a>
+      <p class="file-info">فرمت: EXE &nbsp;•&nbsp; حجم: حدود 518 کیلوبایت &nbsp;•&nbsp; سازگار با ویندوز ۷/۸/۱۰/۱۱</p>
+    </div>
+
+    <footer>
+      <p>© تمامی حقوق متعلق به <span class="brand"> BaxParsi </span> است &nbsp;|&nbsp; طراحی شده توسط Khashi</p>
+    </footer>
+  </div>
+</body>
+</html>
